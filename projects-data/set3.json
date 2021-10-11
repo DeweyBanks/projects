@@ -1,0 +1,17 @@
+[
+  {
+    "city": "low",
+    "start_date": "9/1/15",
+    "end_date": "9/3/15"
+  },
+  {
+    "city": "high",
+    "start_date": "9/5/15",
+    "end_date": "9/7/15"
+  },
+  {
+    "city": "high",
+    "start_date": "9/8/15",
+    "end_date": "9/8/15"
+  }
+]
