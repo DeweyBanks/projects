@@ -52,9 +52,7 @@ class Schedule
     set_days = Set.new(work_set.days)
     possible_gaps = total_days - set_days
     work_set.projects.each do |project|
-      project_days = project.start_date.step(project.end_date)
-      proj_day_set = Set.new(project_days.entries)
-      remove_date = possible_gaps & proj_day_set
+      remove_date = possible_gaps & project.project_days
       next if remove_date.empty?
 
       possible_gaps = possible_gaps - remove_date

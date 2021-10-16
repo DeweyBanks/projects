@@ -15,6 +15,12 @@ class Project
     (end_date - start_date).to_i + 1
   end
 
+  def project_days
+    # create a set of all the days in the project
+    project_days = start_date.step(end_date)
+    Set.new(project_days.entries)
+  end
+
   def travel_days
     days == 1 ? 1 : 2
   end
