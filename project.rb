@@ -3,7 +3,6 @@
 class Project
   attr_accessor :city, :start_date, :end_date, :work_set
 
-
   def initialize(project, work_set)
     @work_set = work_set
     @city = project['city']

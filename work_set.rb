@@ -1,33 +1,40 @@
 # frozen_string_literal: true
 
 class WorkSet
-  attr_accessor :name, :projects
-
-  # set the amount for travel and full day caculations by city type
-  TRAVEL_DAY_COST = {
-    low: 45,
-    high: 55
-  }.freeze
-  FULL_DAY_COST = {
-    low: 75,
-    high: 85
-  }.freeze
+  attr_accessor :name, :projects, :schedule
 
   def initialize(name)
     @name = name
     @projects = fetch_projects
-  end
-
-  def set_schedule
-    Schedule.new(self)
+    @schedule = Schedule.new(self)
   end
 
   def days
     projects.map { |project| [project.start_date, project.end_date] }.flatten
   end
 
+  def start_day
+    # find start_dates that are equal
+    dups = projects.select { |proj| proj.start_date == projects.first.start_date }
+    if dups.count >= 2
+      project = dups.find{ |proj| proj.city == 'high' } ? project : dups.first
+    else
+      projects.sort { |proj|  proj.start_date }.first
+    end
+  end
+
+  def end_day
+    # find end_dates that are equal
+    dups = projects.select { |proj| proj.end_date == projects.first.end_date }
+    if dups.count >= 2
+      project = dups.find{ |proj| proj.city == 'high' } ? project : dups.first
+    else
+      projects.sort { |proj|  proj.start_date }.last
+    end
+  end
+
   def cost
-    set_schedule
+    schedule.travel_day_cost + schedule.full_day_cost.sum
   end
 
   def to_s
