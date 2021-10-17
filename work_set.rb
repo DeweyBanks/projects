@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require 'json'
+# A WorkSet represents a collection of Projects.
+# A WorkSet has a reimbursment cost through a Schedule
+# A WorkSet has a schedule
+# A WorkSet has many projects
 class WorkSet
   attr_accessor :name, :projects, :schedule
 
@@ -9,32 +14,18 @@ class WorkSet
     @schedule = Schedule.new(self)
   end
 
-  def days
-    projects.map { |project| [project.start_date, project.end_date] }.flatten
-  end
-
-  def start_day
-    # find start_dates that are equal
-    dups = projects.select { |proj| proj.start_date == projects.first.start_date }
-    if dups.count >= 2
-      project = dups.find{ |proj| proj.city == 'high' } ? project : dups.first
-    else
-      projects.sort { |proj|  proj.start_date }.first
-    end
-  end
-
-  def end_day
-    # find end_dates that are equal
-    dups = projects.select { |proj| proj.end_date == projects.first.end_date }
-    if dups.count >= 2
-      project = dups.find{ |proj| proj.city == 'high' } ? project : dups.first
-    else
-      projects.sort { |proj|  proj.start_date }.last
-    end
+  def days_with_project
+    projects.map do |project|
+      entries = project.start_date.step(project.end_date).entries.map do |day|
+        { date: day, project: project }
+      end
+      entries
+    end.flatten
   end
 
   def cost
-    schedule.travel_day_cost + schedule.full_day_cost.sum
+    schedule.set_cost
+    schedule.cost.sum
   end
 
   def to_s
@@ -49,31 +40,3 @@ class WorkSet
     projects.map { |proj| Project.new(proj, self) }
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
