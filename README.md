@@ -34,15 +34,15 @@
 ## How it works:
 
   - A WorkSet is created by reading data from json files stored in the projects-data folder.
-   These files have rescritons.
-    1. These files must be json files.
+   These files have restrictions.
+    1. The files must be json files.
     2. The file names must be unique.
-    3. The json objects contained with in hold information for the Projects associated with a WorkSet.
+    3. The json objects contained within hold information for the Projects associated with a WorkSet.
      - The json is stored as an array of hashes:
-     keys:
-     "city" -> Required: String, accepted values: high or low
-     "start_date" -> Required: String, Date "Month/Day/Year"
-     "end_date" -> Required: String, Date "Month/Day/Year"
+     #### keys:
+      - "city" -> Required: String, accepted values: high or low
+      - "start_date" -> Required: String, Date "Month/Day/Year"
+      - "end_date" -> Required: String, Date "Month/Day/Year"
      example:
 
      ```json
