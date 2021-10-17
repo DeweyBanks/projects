@@ -10,7 +10,7 @@
 
  ### Project:
    - belongs to a WorkSet
-   - belongs to a schedule through Set
+   - belongs to a schedule through WorkSet
    - has a start date
    - has an end date
 
