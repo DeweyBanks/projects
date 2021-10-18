@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'json'
 # A WorkSet represents a collection of Projects.
 # A WorkSet has a reimbursment cost through a Schedule
 # A WorkSet has a schedule

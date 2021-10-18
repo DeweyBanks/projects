@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+require 'date'
 require './project'
 require './work_set'
 require './schedule'

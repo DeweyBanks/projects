@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'date'
-
 # A Project represents the scope of work for set time period. A Project belongs to a WorkSet
 class Project
   attr_accessor :city, :start_date, :end_date, :work_set
