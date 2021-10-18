@@ -43,6 +43,7 @@
       - "city" -> Required: String, accepted values: high or low
       - "start_date" -> Required: String, Date "Month/Day/Year"
       - "end_date" -> Required: String, Date "Month/Day/Year"
+
      example:
 
      ```json

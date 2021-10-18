@@ -52,12 +52,12 @@ class Schedule
   end
 
   def gap_day_before(entry, index)
-    # the current entry date minus the previous entry
+    # the current entry date minus the previous entry date
     (entry[:date] - days_with_project[index - 1][:date]).to_i > 1
   end
 
   def gap_day_after(entry, index)
-    # the next entry date minus the current entry
+    # the next entry date minus the current entry date
     (days_with_project[index + 1][:date] - entry[:date]).to_i > 1
   end
 
